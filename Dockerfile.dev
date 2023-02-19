@@ -1,0 +1,7 @@
+FROM node:lts-alpine
+WORKDIR /app/socket-api
+COPY package*.json ./
+RUN npm install 
+COPY . .
+
+CMD ['nodemon', '--exec', 'npm', 'start']

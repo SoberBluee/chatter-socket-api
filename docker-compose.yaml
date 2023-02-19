@@ -1,0 +1,9 @@
+version: "3"
+services: 
+  # change this to the chatter-media-api
+  socket-api:
+    extends:
+        service: base
+    links:
+        - sql-server
+  
