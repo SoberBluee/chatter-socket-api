@@ -29,46 +29,46 @@ app.use(express.static(path.join(__dirname, "public")));
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyBx0TaQHmWWUUtaw_Fba3b1btncXbHSkno",
-  authDomain: "chatter-message-server.firebaseapp.com",
-  databaseURL:
-    "https://chatter-message-server-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "chatter-message-server",
-  storageBucket: "chatter-message-server.appspot.com",
-  messagingSenderId: "124089620228",
-  appId: "1:124089620228:web:450c7d5615aab80e6b2251",
-  measurementId: "G-FXZLRB2NPW",
+    apiKey: "AIzaSyBx0TaQHmWWUUtaw_Fba3b1btncXbHSkno",
+    authDomain: "chatter-message-server.firebaseapp.com",
+    databaseURL:
+        "https://chatter-message-server-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "chatter-message-server",
+    storageBucket: "chatter-message-server.appspot.com",
+    messagingSenderId: "124089620228",
+    appId: "1:124089620228:web:450c7d5615aab80e6b2251",
+    measurementId: "G-FXZLRB2NPW",
 };
 
 // Initialize Firebase
-const firebaseApp = firebase.initializeApp(firebaseConfig);
+var firebaseApp = firebase.initializeApp(firebaseConfig);
 // const firebaseAnalytics = analytics.getAnalytics(firebaseApp);
 
 app.use(
-  cors({
-    origin: "*",
-  })
+    cors({
+        origin: "*",
+    })
 );
 
 app.use("/api/1.0", indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  next(createError(404));
+    next(createError(404));
 });
 
 // error handler
 app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get("env") === "development" ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render("error");
+    // render the error page
+    res.status(err.status || 500);
+    res.render("error");
 });
 
-module.exports = app;
+module.exports = { app, firebaseApp };
 
 /**
  * User logs onto their account
